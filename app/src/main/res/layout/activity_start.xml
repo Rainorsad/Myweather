@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#440000ff">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_alignParentBottom="true"
+            android:background="@mipmap/guide_bg" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ViewFlipper
+                android:id="@+id/vf"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <fragment
+                    class="com.example.a123.myweather.fragment.GuideOneFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <fragment
+                    class="com.example.a123.myweather.fragment.GuideTwoFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <fragment
+                    class="com.example.a123.myweather.fragment.GuideThreeFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </ViewFlipper>
+        </RelativeLayout>
+    </RelativeLayout>
+    <com.example.a123.myweather.wowsplash.WowSplashView
+        android:id="@+id/wowSplash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <com.example.a123.myweather.wowsplash.WowView
+        android:id="@+id/wowView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        />
+
+</RelativeLayout>

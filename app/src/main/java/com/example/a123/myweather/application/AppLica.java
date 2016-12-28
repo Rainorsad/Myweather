@@ -9,7 +9,6 @@ import android.content.Context;
 
 public class AppLica extends Application{
     private Context context;
-    public String  keyCode = "197e8fe14585b";
 
     @Override
     public void onCreate() {
