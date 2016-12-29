@@ -6,6 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 /**
  * Created by WB on 2016/12/8.
  */
@@ -36,4 +39,13 @@ public abstract class BaseActivity extends AppCompatActivity{
         Toast.makeText(c,s,Toast.LENGTH_LONG).show();
     }
 
+    public String toUtf(String s){
+        String encode = null;
+        try {
+            encode = URLEncoder.encode(s,"utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return encode;
+    }
 }

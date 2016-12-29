@@ -12,5 +12,4 @@ public class Configer {
     //key
     public static final String SHARESDK_KEY = "197e8fe14585b";
 
-
 }

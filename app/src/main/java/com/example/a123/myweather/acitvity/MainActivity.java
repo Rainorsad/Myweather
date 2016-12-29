@@ -1,10 +1,12 @@
 package com.example.a123.myweather.acitvity;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.example.a123.myweather.R;
-import com.example.a123.myweather.util.HttpUtils;
+import com.example.a123.myweather.bean.WeatherBean;
 import com.example.a123.myweather.util.KJHttpUtils;
 
 import org.kymjs.kjframe.http.HttpCallBack;
@@ -15,6 +17,8 @@ import java.util.Date;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
+import static com.alibaba.fastjson.JSON.parseObject;
+
 public class MainActivity extends BaseActivity {
 
     private final static String TAG = "MainActivity";
@@ -23,9 +27,6 @@ public class MainActivity extends BaseActivity {
     TextView tvDay;
     @InjectView(R.id.tv_time)
     TextView tvTime;
-
-    private HttpUtils httpUtils;
-    private static String url = "http://apicloud.mob.com/v1/weather/query?key=197e8fe14585b";
 
     private Context context;
 
@@ -62,14 +63,22 @@ public class MainActivity extends BaseActivity {
      * 开始访问网络请求数据
      */
     private void startGetData() {
-        KJHttpUtils.getHttpWeather(context,"通州","北京",callBack);
+        String city = toUtf("通州");
+        String privince = toUtf("北京");
+        KJHttpUtils.getHttpWeather(context,city,privince,callBack);
     }
 
     HttpCallBack callBack = new HttpCallBack() {
         @Override
         public void onSuccess(String t) {
-            super.onSuccess(t);
-            ToaS(context,t);
+            if (JSON.parseObject(t).getInteger("retCode") == 200){
+                String s = String.valueOf(JSON.parseObject(t).getJSONObject("result"));
+                WeatherBean weatherBean = parseObject(s, WeatherBean.class);
+                Log.i(TAG, "onSuccess: "+weatherBean.toString());
+            }else {
+                String msg = parseObject(t).getString("msg");
+                ToaS(context,msg);
+            }
         }
     };
 
