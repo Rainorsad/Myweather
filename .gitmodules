@@ -1,0 +1,6 @@
+[submodule "libs/tinker"]
+	path = libs/tinker
+	url = https://github.com/Tencent/tinker.git
+[submodule "app/libs/tinker"]
+	path = app/libs/tinker
+	url = https://github.com/Tencent/tinker.git

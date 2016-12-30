@@ -36,7 +36,6 @@ dependencies {
     compile files('libs/KJFrameForAndroid_v2.245.jar')
     compile files('libs/fastjson-1.1.34.android.jar')
 
-    //热修复
     //可选，用于生成application类
     provided('com.tencent.tinker:tinker-android-anno:1.7.6')
     //tinker的核心库
@@ -44,3 +43,15 @@ dependencies {
 }
 //apply tinker插件
 apply plugin: 'com.tencent.tinker.patch'
+def gitSha() {
+    try {
+        String gitRev = '1.0'.execute(null, project.rootDir).text.trim()
+        if (gitRev == null) {
+            throw new GradleException("can't get git rev, you should add git to system path or just input test value, such as 'testTinkerId'")
+        }
+        return gitRev
+    } catch (Exception e) {
+        throw new GradleException("can't get git rev, you should add git to system path or just input test value, such as 'testTinkerId'")
+    }
+}
+
